@@ -1,3 +1,3 @@
 import withMovieShopService from "./withMovieShopService";
 
-export default withMovieShopService;
+export { withMovieShopService };

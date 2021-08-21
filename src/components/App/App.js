@@ -1,14 +1,25 @@
 import React from 'react';
-import MovieList from '../MovieList';
-import withMovieShopService from '../Hoc';
 
-const App = ({ movieShopService }) => {
+import { Route, Switch } from 'react-router-dom';
+import Header from '../Header';
+import { MoviesPage, CartPage } from '../Pages';
 
-  console.log(movieShopService.getAllMovies())
+
+
+
+const App = () => {
 
   return (
-    <div>sdad</div>
+    <div className='container'>
+      <Header />
+      <Switch>
+        <Route
+          path='/' exact component={MoviesPage} />
+        <Route
+          path='/cart' component={CartPage} />
+      </Switch>
+    </div>
   )
 }
 
-export default withMovieShopService()(App);
+export default App;

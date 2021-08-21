@@ -1,12 +1,20 @@
 
-const movieLoaded = (newMovies) => {
+const moviesLoaded = (newMovies) => {
   return {
     type: 'FETCH_MOVIES_SUCCESS',
     payload: newMovies,
   };
 };
 
+const moviesLoadedSuccess = () => {
+  return {
+    type: 'FETCH_MOVIES_REQUEST',
+  }
+}
+
+
 export {
-  movieLoaded,
+  moviesLoaded,
+  moviesLoadedSuccess,
 }
 

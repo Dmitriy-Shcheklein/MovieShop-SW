@@ -3,7 +3,9 @@ import React from 'react';
 const Header = () => {
   return (
     <div>
-      asdasd
+      <h1>
+        SW Fan-Shop
+      </h1>
     </div>
   )
 }
