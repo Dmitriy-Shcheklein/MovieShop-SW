@@ -1,0 +1,47 @@
+.tableWrapper {
+  width: 100%;
+  position: sticky;
+  bottom: 0;
+  z-index: 999;
+  background-color: #060606;
+  font-size: 1rem;
+}
+
+.table {
+  color: yellow;
+}
+
+thead {
+  font-size: 1.5rem;
+}
+
+.actions {
+  text-align: right;
+}
+
+button {
+  margin-left: 0.5rem;
+}
+h4 {
+  text-align: center;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title h4 {
+  color: yellow;
+}
+
+.title p {
+  color: red;
+  font-size: 1.5rem;
+}
+
+p {
+  font-size: 1rem;
+  color: #ffffff;
+}

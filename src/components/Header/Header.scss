@@ -1,0 +1,27 @@
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background-color: #060606;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid grey;
+  margin-bottom: 1rem;
+  }
+
+
+.main:visited {
+  color: yellow;
+  
+}
+
+.main:hover {
+  text-decoration: none;
+}
+
+.cart {
+  font-size: 2rem;
+}

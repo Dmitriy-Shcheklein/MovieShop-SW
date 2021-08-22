@@ -1,9 +1,13 @@
 import React from 'react';
+import CartTable from '../CartTable';
 import MovieList from '../MovieList';
 
 const MoviesPage = () => {
   return (
-    <MovieList />
+    <div>
+      <MovieList />
+      <CartTable />
+    </div>
   )
 }
 
