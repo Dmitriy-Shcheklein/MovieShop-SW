@@ -45,10 +45,13 @@ export default class MovieShopService {
     }
   }
 
+  // add 100 to id, so that they do not
+  //  coincide for different groups of goods
   transformFigurine = (figurine) => {
+
     return {
-      id: this._extractId(figurine),
-      name: figurine.name,
+      id: Number(this._extractId(figurine)) + 100,
+      title: figurine.name,
       height: figurine.height,
       mass: figurine.mass,
       hairColor: figurine.hair_color,

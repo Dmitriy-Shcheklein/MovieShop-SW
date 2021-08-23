@@ -26,13 +26,13 @@ const reducer = (state = initialState, action) => {
     case 'FETCH_MOVIES_FAILED':
       return movieFailed(state, action.payload);
 
-    case 'MOVIE_ADDED_TO_CART':
+    case 'PRODUCT_ADDED_TO_CART':
       return updateAllOrder(state, action.payload, +1);
 
-    case 'MOVIE_DECREASE_FROM_CART':
+    case 'PRODUCT_DECREASE_FROM_CART':
       return updateAllOrder(state, action.payload, -1);
 
-    case 'MOVIE_ALL_DELETE_TO_CART':
+    case 'PRODUCT_ALL_DELETE_TO_CART':
       const items = state.cartList.find((item) => item.id === action.payload);
       return updateAllOrder(state, action.payload, -items.count);
 
@@ -49,6 +49,5 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 }
-
 
 export default reducer;

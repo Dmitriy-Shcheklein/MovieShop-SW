@@ -3,9 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../Spinner';
 import ErrorIndicator from '../ErrorIndicator';
 import FigurineList from './FigurineList';
-import {
-  figurinesError, figurinesLoadedSuccess, figurinesLoading,
-} from '../../actions/Actions';
+import { figurineFetching } from '../../actions/Actions';
 import { useEffect, useContext } from 'react';
 import { MyContext } from '../MovieShopContext';
 
@@ -16,15 +14,8 @@ const FigurineListContainer = () => {
   const dispatch = useDispatch();
   const movieShopService = useContext(MyContext);
 
-  const updateFigurines = (movieShopService, dispatch) => {
-    dispatch(figurinesLoading());
-    movieShopService.getAllFigurines()
-      .then((data) => dispatch(figurinesLoadedSuccess(data)))
-      .catch((error) => dispatch(figurinesError(error)))
-  }
-
   useEffect(() => {
-    updateFigurines(movieShopService, dispatch)
+    figurineFetching(movieShopService, dispatch)
   }, [movieShopService, dispatch])
 
   const loading = useSelector(state => state.loading);

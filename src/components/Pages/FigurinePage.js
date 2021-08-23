@@ -1,9 +1,13 @@
 import React from 'react';
 import FigurineListContainer from '../FigurineList';
+import CartTable from '../CartTable'
 
 const FigurinePage = () => {
   return (
-    <FigurineListContainer />
+    <div>
+      <FigurineListContainer />
+      <CartTable />
+    </div>
   )
 }
 

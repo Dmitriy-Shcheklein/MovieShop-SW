@@ -1,7 +1,7 @@
 import React from 'react'
 import MovieListItem from './MovieListItem';
 import { connect } from 'react-redux';
-import { movieAddToCart } from '../../actions/Actions';
+import { productAddToCart } from '../../actions/Actions';
 
 const MovieList = ({ movies, onAddedtoCart }) => {
 
@@ -34,7 +34,7 @@ const mapStateToProps = ({ movies }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddedtoCart: (id) => dispatch(movieAddToCart(id))
+    onAddedtoCart: (id) => dispatch(productAddToCart(id))
   }
 }
 

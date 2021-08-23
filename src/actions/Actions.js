@@ -26,24 +26,31 @@ const moviesFetching = (movieShopService, dispatch) => () => {
     .catch((error) => dispatch(moviesError(error)));
 }
 
-const movieAddToCart = (movieId) => {
+const figurineFetching = (movieShopService, dispatch) => {
+  dispatch(figurinesLoading());
+  movieShopService.getAllFigurines()
+    .then((data) => dispatch(figurinesLoadedSuccess(data)))
+    .catch((error) => dispatch(figurinesError(error)))
+}
+
+const productAddToCart = (productId) => {
   return {
-    type: 'MOVIE_ADDED_TO_CART',
-    payload: movieId,
+    type: 'PRODUCT_ADDED_TO_CART',
+    payload: productId,
   }
 }
 
-const movieDecreaseFromCart = (movieId) => {
+const productDecreaseFromCart = (productId) => {
   return {
-    type: 'MOVIE_DECREASE_FROM_CART',
-    payload: movieId,
+    type: 'PRODUCT_DECREASE_FROM_CART',
+    payload: productId,
   }
 }
 
-const movieDeleteAllToCart = (movieId) => {
+const productDeleteAllToCart = (productId) => {
   return {
-    type: 'MOVIE_ALL_DELETE_TO_CART',
-    payload: movieId,
+    type: 'PRODUCT_ALL_DELETE_TO_CART',
+    payload: productId,
   }
 }
 
@@ -67,16 +74,11 @@ const figurinesError = (error) => {
   }
 }
 
-
-
-
 export {
-  figurinesError,
-  figurinesLoadedSuccess,
-  figurinesLoading,
-  movieDeleteAllToCart,
-  movieDecreaseFromCart,
-  movieAddToCart,
+  figurineFetching,
+  productDeleteAllToCart,
+  productDecreaseFromCart,
+  productAddToCart,
   moviesFetching,
 }
 

@@ -4,17 +4,17 @@ import './FigurineListItem.scss';
 
 const FigurineListItem = ({ figurine, onAddedtoCart }) => {
 
-  const { id, name, height, mass, hairColor,
+  const { id, title, height, mass, hairColor,
     skinColor, EyeColor, gender, price } = figurine;
 
   return (
     <div className='figurineListItem'>
       <div className="figurineListItem_poster">
-        <img src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+        <img src={`https://starwars-visualguide.com/assets/img/characters/${id - 100}.jpg`}
           alt='poster' />
       </div>
       <div className='figurineDetails'>
-        <h2 className='figurineName'>{name}</h2>
+        <h2 className='figurineName'>{title}</h2>
         <div className='figurineSpecifications'>
           <p>Height: {height} </p>
           <p>Weight: {mass} </p>

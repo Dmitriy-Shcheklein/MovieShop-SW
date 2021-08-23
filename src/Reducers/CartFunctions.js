@@ -22,31 +22,34 @@ const updateCartList = (cartList, newItem, itemIdx) => {
   ]
 };
 
-const updateCartListItem = (movie, item, quantity) => {
+const updateCartListItem = (product, item, quantity) => {
 
   if (item) {
     return {
       ...item,
       count: item.count + quantity,
-      total: item.total + (movie.price * quantity),
+      total: item.total + (product.price * quantity),
     };
   } else {
     return {
-      id: movie.id,
-      title: movie.title,
+      id: product.id,
+      title: product.title,
       count: 1,
-      total: movie.price,
+      total: product.price,
     };
   }
 }
 
-const updateAllOrder = (state, movieId, quantity) => {
+const updateAllOrder = (state, productId, quantity) => {
 
-  const movie = state.movies.find((movie) => movie.id === movieId);
-  const itemIdx = state.cartList.findIndex(({ id }) => id === movieId);
+  const product = (
+    state.movies.find((product) => product.id === productId) ||
+    state.figurines.find((product) => product.id === productId)
+  );
+  const itemIdx = state.cartList.findIndex(({ id }) => id === productId);
   const item = state.cartList[itemIdx];
 
-  const newItem = updateCartListItem(movie, item, quantity);
+  const newItem = updateCartListItem(product, item, quantity);
   const cartList = updateCartList(state.cartList, newItem, itemIdx);
 
   const allOrder = cartList.reduce((accum, item) => accum + item.total, 0);

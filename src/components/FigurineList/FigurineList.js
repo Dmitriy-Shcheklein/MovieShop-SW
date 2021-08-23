@@ -1,16 +1,16 @@
 import React from 'react';
 import FigurineListItem from './FigurineListItem';
 import { useSelector, useDispatch } from 'react-redux';
-
-
+import { productAddToCart } from '../../actions/Actions';
 
 const FigurineList = () => {
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const figurines = useSelector((state) => state.figurines)
 
-
-
+  const onAddedtoCart = (id) => {
+    dispatch(productAddToCart(id));
+  }
 
   return (
     <ul className='list'>
@@ -22,7 +22,7 @@ const FigurineList = () => {
               key={idx}>
               <FigurineListItem
                 figurine={figurine}
-              // onAddedtoCart={() => onAddedtoCart(figurine.id)}
+                onAddedtoCart={() => onAddedtoCart(figurine.id)}
               />
             </li>
           );

@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { movieAddToCart, movieDecreaseFromCart, movieDeleteAllToCart } from '../../actions/Actions';
+import {
+  productDeleteAllToCart, productDecreaseFromCart,
+  productAddToCart,
+} from '../../actions/Actions';
 import { Fragment } from 'react';
 
 const TableRow = ({ item, idx, onAdd, onDecrease, onDeleteAll }) => {
@@ -42,9 +45,9 @@ const mapToStateProps = ({ cartList, allOrder }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAdd: (id) => dispatch(movieAddToCart(id)),
-    onDecrease: (id) => dispatch(movieDecreaseFromCart(id)),
-    onDeleteAll: (id) => dispatch(movieDeleteAllToCart(id)),
+    onAdd: (id) => dispatch(productAddToCart(id)),
+    onDecrease: (id) => dispatch(productDecreaseFromCart(id)),
+    onDeleteAll: (id) => dispatch(productDeleteAllToCart(id)),
   }
 };
 
