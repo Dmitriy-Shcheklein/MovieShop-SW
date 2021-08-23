@@ -5,17 +5,20 @@
 }
 
 .figurineListItem_poster {
-  margin-right: 5rem;
+  margin-right: 15rem;
 }
 
 .figurineDetails p {
   font-size: 1.5rem;
+  text-align: left;
 }
 
 .figurineName {
   font-size: 2.5rem;
+  text-align: left;
 }
 
-.button {
+.figurineDetails button {
   font-size: 1.5rem;
+  float: left;
 }

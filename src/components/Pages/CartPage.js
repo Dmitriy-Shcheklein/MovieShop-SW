@@ -17,8 +17,15 @@ const CartPage = () => {
     )
   }
 
+  console.log(typeof (window.location.href))
+
   return (
-    <CartTable />
+    <div className='cartPage_true'>
+      <CartTable />
+      <div className='button_buy'>
+        <button className='btn btn-primary'>BUY NOW!!!</button>
+      </div>
+    </div>
   )
 }
 

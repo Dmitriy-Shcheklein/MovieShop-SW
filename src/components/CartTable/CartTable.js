@@ -6,41 +6,53 @@ import './CartTable.scss';
 
 const CartTable = ({ items, total }) => {
 
+  let wrapperStyle = '';
+
   if (!total) {
     return null
   }
 
+  if (window.location.href === 'http://localhost:3000/cart') {
+    wrapperStyle = 'cartPageWrapper';
+  } else {
+    wrapperStyle = 'anotherPageCart';
+  }
+
+
+
   return (
-    <div className='tableWrapper'>
-      <div className='title'>
-        <h4>Your Order</h4>
-        <p>Total: ${total}</p>
+    <div className={wrapperStyle}>
+      <div className='table'>
+        <div className='title'>
+          <h4>Your Order</h4>
+          <p>Total: ${total}</p>
+        </div>
+        <table className='table'>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Item</th>
+              <th>Count</th>
+              <th>Price</th>
+              <th className='actions'>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              items.map((item, idx) => {
+                return (
+                  <tr key={idx}>
+                    <TableRow
+                      item={item}
+                      idx={idx}
+                    />
+                  </tr>
+                );
+              })
+            }
+          </tbody>
+        </table>
       </div>
-      <table className='table'>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Item</th>
-            <th>Count</th>
-            <th>Price</th>
-            <th className='actions'>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            items.map((item, idx) => {
-              return (
-                <tr key={idx}>
-                  <TableRow
-                    item={item}
-                    idx={idx}
-                  />
-                </tr>
-              );
-            })
-          }
-        </tbody>
-      </table>
     </div>
   )
 }
