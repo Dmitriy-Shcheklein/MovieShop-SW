@@ -1,11 +1,14 @@
 
 export default class MovieShopService {
 
-  imageBase = 'https://starwars-visualguide.com/assets/img/films/';
+  moviesBase = 'https://swapi.dev/api/films/'
+
+  figurineBase = 'https://swapi.dev/api/people/'
+
 
   //get Request from server
-  getRequest = async () => {
-    const resolve = await fetch('https://swapi.dev/api/films/');
+  getRequest = async (url) => {
+    const resolve = await fetch(url);
 
     if (!resolve.ok) {
       throw new Error(`fetch request failed,
@@ -14,11 +17,15 @@ export default class MovieShopService {
     return await resolve.json();
   };
 
-
   getAllMovies = async () => {
-    const resolve = await this.getRequest();
+    const resolve = await this.getRequest(this.moviesBase);
     return await resolve.results.map(this.transformMovies);
   };
+
+  getAllFigurines = async () => {
+    const resolve = await this.getRequest(this.figurineBase);
+    return await resolve.results.map(this.transformFigurine);
+  }
 
   //get ID number from URL
   _extractId = (item) => {
@@ -38,20 +45,17 @@ export default class MovieShopService {
     }
   }
 
-  getMoviePoster = ({ id }) => {
-    return `${this.imageBase}${id}.jpg`
+  transformFigurine = (figurine) => {
+    return {
+      id: this._extractId(figurine),
+      name: figurine.name,
+      height: figurine.height,
+      mass: figurine.mass,
+      hairColor: figurine.hair_color,
+      skinColor: figurine.skin_color,
+      EyeColor: figurine.eye_color,
+      gender: figurine.gender,
+      price: 500,
+    }
   }
-
 };
-
-
-
- // movies = fetch(this._movieBase)
-  //   .then((res) => res.json())
-  //   .then((data) => console.log(data))
-
-
-
-// getmovies() {
-  //   return [];
-  // }

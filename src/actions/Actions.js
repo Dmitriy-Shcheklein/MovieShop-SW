@@ -47,8 +47,33 @@ const movieDeleteAllToCart = (movieId) => {
   }
 }
 
+const figurinesLoadedSuccess = (newFigurines) => {
+  return {
+    type: 'FETCH_FIGURINES_SUCCESS',
+    payload: newFigurines,
+  };
+};
+
+const figurinesLoading = () => {
+  return {
+    type: 'FETCH_FIGURINES_REQUEST',
+  }
+}
+
+const figurinesError = (error) => {
+  return {
+    type: 'FETCH_FIGURINES_FAILED',
+    payload: error,
+  }
+}
+
+
+
 
 export {
+  figurinesError,
+  figurinesLoadedSuccess,
+  figurinesLoading,
   movieDeleteAllToCart,
   movieDecreaseFromCart,
   movieAddToCart,

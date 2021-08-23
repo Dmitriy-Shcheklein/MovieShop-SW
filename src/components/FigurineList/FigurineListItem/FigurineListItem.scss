@@ -1,0 +1,21 @@
+.figurineListItem {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.figurineListItem_poster {
+  margin-right: 5rem;
+}
+
+.figurineDetails p {
+  font-size: 1.5rem;
+}
+
+.figurineName {
+  font-size: 2.5rem;
+}
+
+.button {
+  font-size: 1.5rem;
+}

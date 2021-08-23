@@ -1,18 +1,18 @@
 import React from 'react';
-import { MovieShopConsumer } from '../MovieShopContext';
+import { MyContext } from '../MovieShopContext/MovieShopContext';
 
 const withMovieShopService = () => (Wrapped) => {
 
   return (props) => {
     return (
-      <MovieShopConsumer>
+      <MyContext.Consumer>
         {
           (movieShopService) => {
             return <Wrapped {...props}
               movieShopService={movieShopService} />
           }
         }
-      </MovieShopConsumer>
+      </MyContext.Consumer>
     )
   }
 }

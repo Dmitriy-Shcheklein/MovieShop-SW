@@ -1,11 +1,10 @@
 import React from 'react';
 
-const {
-  Provider: MovieShopProvider,
-  Consumer: MovieShopConsumer,
-} = React.createContext();
+const MyContext = React.createContext()
 
-export {
-  MovieShopProvider,
-  MovieShopConsumer,
-}
+// const {
+//   Provider: MovieShopProvider,
+//   Consumer: MovieShopConsumer,
+// } = React.createContext();
+
+export { MyContext };

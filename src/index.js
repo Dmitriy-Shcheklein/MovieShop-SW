@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/App';
 import ErrorBoundry from './components/ErrorBoundry';
 import MovieShopService from './Services/MovieShopServices';
-import { MovieShopProvider } from './components/MovieShopContext';
+import { MyContext } from './components/MovieShopContext';
 import store from './Store';
 
 const movieShopService = new MovieShopService();
@@ -16,11 +16,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ErrorBoundry>
-        <MovieShopProvider value={movieShopService}>
+        <MyContext.Provider value={movieShopService}>
           <BrowserRouter>
             <App />
           </BrowserRouter>
-        </MovieShopProvider>
+        </MyContext.Provider>
       </ErrorBoundry>
     </Provider>
   </React.StrictMode>,

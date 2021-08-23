@@ -1,10 +1,9 @@
-import React from 'react'
+import React from 'react';
+import FigurineListContainer from '../FigurineList';
 
 const FigurinePage = () => {
   return (
-    <div>
-      Coming SOON
-    </div>
+    <FigurineListContainer />
   )
 }
 

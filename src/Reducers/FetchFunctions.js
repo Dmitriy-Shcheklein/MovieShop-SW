@@ -26,8 +26,39 @@ const movieFailed = (state, error) => {
   };
 }
 
+const figurinesRequest = (state) => {
+  return {
+    ...state,
+    figurines: [],
+    loading: true,
+    error: null,
+  };
+}
+
+const figurinesSuccess = (state, newFigurines) => {
+  return {
+    ...state,
+    figurines: newFigurines,
+    loading: false,
+    error: null,
+  };
+}
+
+const figurinesFailed = (state, error) => {
+  return {
+    ...state,
+    figurines: [],
+    loading: false,
+    error,
+  };
+}
+
+
 export {
   movieFailed,
   movieSuccess,
-  movieRequest
+  movieRequest,
+  figurinesFailed,
+  figurinesRequest,
+  figurinesSuccess,
 }
