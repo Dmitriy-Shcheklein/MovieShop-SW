@@ -6,7 +6,6 @@ const MovieListItem = ({ movie, onAddedtoCart }) => {
   const { title, releaseDate, director,
     episodeNumber, price, id } = movie;
 
-
   return (
 
     <div className='moveListItem'>

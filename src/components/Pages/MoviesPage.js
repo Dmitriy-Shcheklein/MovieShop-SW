@@ -1,14 +1,14 @@
 import React from 'react';
 import CartTable from '../CartTable';
 import MovieListContainer from '../MovieList';
-import { Fragment } from 'react';
+import ErrorBoundry from '../ErrorBoundry';
 
 const MoviesPage = () => {
   return (
-    <Fragment>
+    <ErrorBoundry>
       <MovieListContainer />
       <CartTable />
-    </Fragment>
+    </ErrorBoundry>
   )
 }
 

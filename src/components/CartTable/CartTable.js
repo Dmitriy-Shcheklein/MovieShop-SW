@@ -15,10 +15,8 @@ const CartTable = ({ items, total }) => {
   if (window.location.href === 'http://localhost:3000/cart') {
     wrapperStyle = 'cartPageWrapper';
   } else {
-    wrapperStyle = 'anotherPageCart';
+    wrapperStyle = 'anotherPageWrapper';
   }
-
-
 
   return (
     <div className={wrapperStyle}>

@@ -1,14 +1,14 @@
 import React from 'react';
 import FigurineListContainer from '../FigurineList';
-import { Fragment } from 'react';
+import ErrorBoundry from '../ErrorBoundry'
 import CartTable from '../CartTable'
 
 const FigurinePage = () => {
   return (
-    <Fragment>
+    <ErrorBoundry>
       <FigurineListContainer />
       <CartTable />
-    </Fragment>
+    </ErrorBoundry>
   )
 }
 

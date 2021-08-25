@@ -34,7 +34,7 @@ const mapStateToProps = ({ movies }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddedtoCart: (id) => dispatch(productAddToCart(id))
+    onAddedtoCart: (id) => dispatch(productAddToCart(id)),
   }
 }
 

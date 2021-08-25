@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CartTable from '../CartTable';
 import { useSelector } from 'react-redux';
+import Modal from '../Modal';
 
 import './CartPage.scss';
 
 const CartPage = () => {
 
   const total = useSelector(state => state.allOrder);
+
+  const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
   if (!total) {
     return (
@@ -17,14 +24,17 @@ const CartPage = () => {
     )
   }
 
-  console.log(typeof (window.location.href))
-
   return (
     <div className='cartPage_true'>
       <CartTable />
       <div className='button_buy'>
-        <button className='btn btn-primary'>BUY NOW!!!</button>
+        <button
+          onClick={() => toggleModal()}
+          className='btn btn-primary'>BUY NOW!!!</button>
       </div>
+      <Modal
+        modal={modal}
+        toggleModal={toggleModal} />
     </div>
   )
 }
