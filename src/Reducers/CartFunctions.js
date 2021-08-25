@@ -61,6 +61,16 @@ const updateAllOrder = (state, productId, quantity) => {
   };
 }
 
+const cleanOrder = (state) => {
+
+  return {
+    ...state,
+    cartList: [],
+    allOrder: null,
+  }
+}
+
 export {
   updateAllOrder,
+  cleanOrder,
 }

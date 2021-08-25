@@ -15,12 +15,32 @@ const CartPage = () => {
     setModal(!modal);
   };
 
-  if (!total) {
+  if (!total && !modal) {
     return (
       <div className='cartPage'>
         <h2>You have not selected anything!!!</h2>
         <p>Take your pick.<br /> We have a lot of interesting products.</p>
       </div>
+    )
+  };
+
+  return <CartPageFull
+    modal={modal}
+    toggleModal={toggleModal}
+  />
+}
+
+export default CartPage;
+
+const CartPageFull = (props) => {
+
+  const { modal, toggleModal } = props;
+
+  if (modal) {
+    return (
+      <Modal
+        modal={modal}
+        toggleModal={toggleModal} />
     )
   }
 
@@ -29,14 +49,9 @@ const CartPage = () => {
       <CartTable />
       <div className='button_buy'>
         <button
-          onClick={() => toggleModal()}
+          onClick={toggleModal}
           className='btn btn-primary'>BUY NOW!!!</button>
       </div>
-      <Modal
-        modal={modal}
-        toggleModal={toggleModal} />
     </div>
   )
 }
-
-export default CartPage;

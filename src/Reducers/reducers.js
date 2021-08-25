@@ -1,5 +1,4 @@
-import { deleteOrder } from "../actions/Actions";
-import { updateAllOrder } from "./CartFunctions";
+import { cleanOrder, updateAllOrder } from "./CartFunctions";
 import {
   movieFailed, movieSuccess, movieRequest,
   figurinesFailed, figurinesRequest, figurinesSuccess,
@@ -27,6 +26,15 @@ const reducer = (state = initialState, action) => {
     case 'FETCH_MOVIES_FAILED':
       return movieFailed(state, action.payload);
 
+    case 'FETCH_FIGURINES_REQUEST':
+      return figurinesRequest(state);
+
+    case 'FETCH_FIGURINES_SUCCESS':
+      return figurinesSuccess(state, action.payload);
+
+    case 'FETCH_FIGURINES_FAILED':
+      return figurinesFailed(state, action.payload);
+
     case 'PRODUCT_ADDED_TO_CART':
       return updateAllOrder(state, action.payload, +1);
 
@@ -37,14 +45,8 @@ const reducer = (state = initialState, action) => {
       const items = state.cartList.find((item) => item.id === action.payload);
       return updateAllOrder(state, action.payload, -items.count);
 
-    case 'FETCH_FIGURINES_REQUEST':
-      return figurinesRequest(state);
-
-    case 'FETCH_FIGURINES_SUCCESS':
-      return figurinesSuccess(state, action.payload);
-
-    case 'FETCH_FIGURINES_FAILED':
-      return figurinesFailed(state, action.payload);
+    case 'CLEAN_CART':
+      return cleanOrder(state);
 
     default:
       return state;

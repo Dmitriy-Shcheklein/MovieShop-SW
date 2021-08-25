@@ -5,6 +5,25 @@ export default class MovieShopService {
 
   figurineBase = 'https://swapi.dev/api/people/'
 
+  fetchDataOutput = async (outputData) => {
+
+    const url = 'https://httpbin.org/post';
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(outputData),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      const json = await response.json();
+
+      console.log('Success:', json);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
 
   //get Request from server
   getRequest = async (url) => {
@@ -61,4 +80,27 @@ export default class MovieShopService {
       price: 500,
     }
   }
+
+
+
 };
+
+
+// fetchDataOutput = async (outputData) => {
+
+//   const url = 'https://httpbin.org/post';
+
+//   try {
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       body: JSON.stringify(outputData),
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//     });
+//     const json = await response.json();
+//     console.log('Успех:', JSON.stringify(json));
+//   } catch (error) {
+//     console.error('Ошибка:', error);
+//   }
+// }

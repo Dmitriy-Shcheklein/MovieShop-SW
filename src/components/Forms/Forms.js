@@ -4,10 +4,11 @@ import FormPayment from './FormPayment';
 import { useSelector, useDispatch } from 'react-redux';
 import FormReviewOrder from './FormReviewOrder';
 import FormOfGratitude from './FormOfGratitude';
+import { cleanCart } from '../../actions/Actions';
+import { withMovieShopService } from '../Hoc';
 
 
-
-const Forms = ({ toggleModal }) => {
+const Forms = ({ toggleModal, movieShopService }) => {
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -21,11 +22,22 @@ const Forms = ({ toggleModal }) => {
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
 
+  let outputData = {
+    firstName, lastName, adressLine, city,
+    region, postalCode, country, nameCard, cardNumber,
+    expiryDate, cvv,
+  }
+
   const dispatch = useDispatch()
   const items = useSelector((state) => state.cartList)
   const totalPrice = useSelector((state) => state.allOrder)
 
-  const numberOfOrder = Math.floor(Math.random() * 100000 + 1)
+  const mergeCartwithData = (outputData, items) => {
+    items.forEach((item, idx) => outputData[`product #${idx}`] = item)
+    return outputData
+  }
+
+  let numberOfOrder = Math.floor(Math.random() * 100000 + 1)
 
   const [adressBtn, setAdressBtn] = useState(false);
   const toggleAdressBtn = () => {
@@ -33,16 +45,21 @@ const Forms = ({ toggleModal }) => {
   }
 
   const [paymentBtn, setPaymentBtn] = useState(false);
-  const togglepaymentBtn = () => {
+  const togglepaymentBtn = (outputData, items) => {
+    mergeCartwithData(outputData, items);
     setPaymentBtn(!paymentBtn);
+    console.log(outputData)
   }
 
-  const [orderBtn, setOrderBtn] = useState(false)
-  const toggleOrderBtn = () => {
+
+  const [orderBtn, setOrderBtn] = useState(false);
+  const { fetchDataOutput } = movieShopService;
+  const toggleOrderBtn = (dispatch, fetchDataOutput,
+    outputData) => {
     setOrderBtn(!orderBtn);
+    dispatch(cleanCart());
+    fetchDataOutput(outputData);
   }
-
-
 
   const adressBtnStatus = !(firstName && lastName &&
     adressLine && city && region &&
@@ -85,7 +102,7 @@ const Forms = ({ toggleModal }) => {
           setExpiryDate={(e) => setExpiryDate(e.target.value)}
           setCvv={(e) => setCvv(e.target.value)}
           paymentBtnStatus={paymentBtnStatus}
-          togglepaymentBtn={togglepaymentBtn}
+          togglepaymentBtn={() => togglepaymentBtn(outputData, items)}
           toggleAdressBtn={toggleAdressBtn}
         />
       </div>
@@ -100,7 +117,8 @@ const Forms = ({ toggleModal }) => {
         country={country} nameCard={nameCard}
         cardNumber={cardNumber} expiryDate={expiryDate}
         togglepaymentBtn={togglepaymentBtn}
-        toggleOrderBtn={toggleOrderBtn}
+        toggleOrderBtn={() => toggleOrderBtn(dispatch,
+          fetchDataOutput, outputData)}
       />
     )
   } else {
@@ -111,7 +129,4 @@ const Forms = ({ toggleModal }) => {
   }
 }
 
-export default Forms;
-
-
-
+export default withMovieShopService()(Forms);
