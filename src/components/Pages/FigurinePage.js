@@ -6,8 +6,10 @@ import CartTable from '../CartTable'
 const FigurinePage = () => {
   return (
     <ErrorBoundry>
-      <FigurineListContainer />
-      <CartTable />
+      <section>
+        <FigurineListContainer />
+        <CartTable />
+      </section>
     </ErrorBoundry>
   )
 }

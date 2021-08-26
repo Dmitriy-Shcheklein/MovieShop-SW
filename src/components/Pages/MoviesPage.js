@@ -6,8 +6,10 @@ import ErrorBoundry from '../ErrorBoundry';
 const MoviesPage = () => {
   return (
     <ErrorBoundry>
-      <MovieListContainer />
-      <CartTable />
+      <section>
+        <MovieListContainer />
+        <CartTable />
+      </section>
     </ErrorBoundry>
   )
 }

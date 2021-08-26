@@ -45,13 +45,15 @@ const CartPageFull = (props) => {
   }
 
   return (
-    <div className='cartPage_true'>
-      <CartTable />
-      <div className='button_buy'>
-        <button
-          onClick={toggleModal}
-          className='btn btn-primary'>BUY NOW!!!</button>
+    <section>
+      <div className='cartPage_true'>
+        <CartTable />
+        <div className='button_buy'>
+          <button
+            onClick={toggleModal}
+            className='btn btn-primary'>BUY NOW!!!</button>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }

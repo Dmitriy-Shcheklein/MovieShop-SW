@@ -12,12 +12,23 @@ const figurineFetching = (movieShopService, dispatch) => {
     .catch((error) => dispatch(figurinesError(error)))
 }
 
+const outputDataFetching = async (movieShopService,
+  outputData, dispatch) => {
+  dispatch(sendForm());
+  setTimeout(() => {
+    movieShopService.sendOrderInfo(outputData)
+      .then((data) => dispatch(sendFormSuccess(data)))
+      .catch((error) => dispatch(sendFormError(error)))
+      .finally((data) => console.log(data))
+  }, 2500)
+}
+
 const moviesLoadedSuccess = (newMovies) => {
   return {
     type: 'FETCH_MOVIES_SUCCESS',
     payload: newMovies,
-  };
-};
+  }
+}
 
 const moviesLoading = () => {
   return {
@@ -29,21 +40,21 @@ const moviesError = (error) => {
   return {
     type: 'FETCH_MOVIES_FAILED',
     payload: error,
-  }
-}
+  };
+};
 
 const figurinesLoadedSuccess = (newFigurines) => {
   return {
     type: 'FETCH_FIGURINES_SUCCESS',
     payload: newFigurines,
-  };
-};
+  }
+}
 
 const figurinesLoading = () => {
   return {
     type: 'FETCH_FIGURINES_REQUEST',
-  }
-}
+  };
+};
 
 const figurinesError = (error) => {
   return {
@@ -79,6 +90,27 @@ const cleanCart = () => {
   }
 }
 
+const sendForm = () => {
+  return {
+    type: 'FETCH_FORM_SENDING'
+  }
+}
+
+const sendFormSuccess = (orderInfo) => {
+  return {
+    type: 'FETCH_FORM_SUCCESS',
+    payload: orderInfo,
+  }
+}
+
+const sendFormError = (sendingFormError) => {
+  return {
+    type: 'FETCH_FORM_ERROR',
+    payload: sendingFormError,
+  }
+}
+
+
 export {
   figurineFetching,
   productDeleteAllToCart,
@@ -86,4 +118,5 @@ export {
   productAddToCart,
   moviesFetching,
   cleanCart,
+  outputDataFetching,
 }

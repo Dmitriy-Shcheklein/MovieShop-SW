@@ -11,6 +11,9 @@ const initialState = {
   error: null,
   cartList: [],
   allOrder: null,
+  sendingForm: true,
+  sendingFormError: null,
+  orderInfo: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -47,6 +50,30 @@ const reducer = (state = initialState, action) => {
 
     case 'CLEAN_CART':
       return cleanOrder(state);
+
+    case 'FETCH_FORM_SENDING':
+      return {
+        ...state,
+        sendingForm: true,
+        sendingFormError: null,
+        orderInfo: [],
+      };
+
+    case 'FETCH_FORM_SUCCESS':
+      return {
+        ...state,
+        sendingForm: false,
+        sendingFormError: null,
+        orderInfo: action.payload,
+      }
+
+    case 'FETCH_FORM_ERROR':
+      return {
+        ...state,
+        sendingForm: false,
+        sendingFormError: action.payload,
+        orderInfo: [],
+      }
 
     default:
       return state;

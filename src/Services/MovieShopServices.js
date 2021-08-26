@@ -5,24 +5,23 @@ export default class MovieShopService {
 
   figurineBase = 'https://swapi.dev/api/people/'
 
-  fetchDataOutput = async (outputData) => {
+  sendOrderInfo = async (outputData) => {
 
     const url = 'https://httpbin.org/post';
 
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(outputData),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      });
-      const json = await response.json();
-
-      console.log('Success:', json);
-    } catch (error) {
-      console.error('Error:', error);
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(outputData),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`fetch request failed,
+          for more info read ${response.status}`)
     }
+    const result = await response.json();
+    return await result.json;
   }
 
   //get Request from server
