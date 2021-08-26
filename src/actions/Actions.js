@@ -19,7 +19,6 @@ const outputDataFetching = async (movieShopService,
     movieShopService.sendOrderInfo(outputData)
       .then((data) => dispatch(sendFormSuccess(data)))
       .catch((error) => dispatch(sendFormError(error)))
-      .finally((data) => console.log(data))
   }, 2500)
 }
 

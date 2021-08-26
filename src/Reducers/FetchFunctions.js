@@ -53,6 +53,32 @@ const figurinesFailed = (state, error) => {
   };
 }
 
+const formSending = (state) => {
+  return {
+    ...state,
+    sendingForm: true,
+    sendingFormError: null,
+    orderInfo: [],
+  };
+}
+
+const formSuccess = (state, newOrderInfo) => {
+  return {
+    ...state,
+    sendingForm: false,
+    sendingFormError: null,
+    orderInfo: newOrderInfo,
+  }
+}
+
+const formError = (state, error) => {
+  return {
+    ...state,
+    sendingForm: false,
+    sendingFormError: error,
+    orderInfo: [],
+  }
+}
 
 export {
   movieFailed,
@@ -61,4 +87,7 @@ export {
   figurinesFailed,
   figurinesRequest,
   figurinesSuccess,
+  formSending,
+  formSuccess,
+  formError,
 }

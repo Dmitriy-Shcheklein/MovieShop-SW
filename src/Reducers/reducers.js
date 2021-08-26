@@ -1,7 +1,8 @@
 import { cleanOrder, updateAllOrder } from "./CartFunctions";
 import {
   movieFailed, movieSuccess, movieRequest,
-  figurinesFailed, figurinesRequest, figurinesSuccess,
+  figurinesFailed, figurinesRequest, figurinesSuccess, formSending,
+  formSuccess, formError,
 } from "./FetchFunctions";
 
 const initialState = {
@@ -52,28 +53,13 @@ const reducer = (state = initialState, action) => {
       return cleanOrder(state);
 
     case 'FETCH_FORM_SENDING':
-      return {
-        ...state,
-        sendingForm: true,
-        sendingFormError: null,
-        orderInfo: [],
-      };
+      return formSending(state);
 
     case 'FETCH_FORM_SUCCESS':
-      return {
-        ...state,
-        sendingForm: false,
-        sendingFormError: null,
-        orderInfo: action.payload,
-      }
+      return formSuccess(state, action.payload)
 
     case 'FETCH_FORM_ERROR':
-      return {
-        ...state,
-        sendingForm: false,
-        sendingFormError: action.payload,
-        orderInfo: [],
-      }
+      return formError(state, action.payload)
 
     default:
       return state;

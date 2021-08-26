@@ -8,7 +8,8 @@ import "./FormOfGratitude.scss"
 const FormOfGratitude = ({ numberOfOrder, toggleModal }) => {
 
   const loading = useSelector((state) => state.sendingForm);
-  const error = useSelector((state) => state.sendingFormError)
+  const error = useSelector((state) => state.sendingFormError);
+  const orderInfo = useSelector((state) => state.orderInfo);
 
   if (loading) {
     return (
@@ -32,6 +33,7 @@ const FormOfGratitude = ({ numberOfOrder, toggleModal }) => {
     )
   }
 
+  console.log('INFO OF ORDER, response from the server', orderInfo);
 
   return (
     <div className='gratitude'>
