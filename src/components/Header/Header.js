@@ -1,16 +1,25 @@
 import React from 'react';
-import './Header.scss';
-import { Link } from 'react-router-dom';
+import HeaderDesktop from './HeaderDesktop';
+import HeaderLaptop from './HeaderLaptop';
+import HeaderTablet from './HeaderTablet';
+import HeaderMobile from './HeaderMobile';
 
-const Header = () => {
-  return (
-    <header className='header' >
-      <Link to='/' className='main'>SW Fan-Shop</Link>
-      <Link to='/movies' className='display-5 movie'>By a movie</Link>
-      <Link to='/figurine' className='display-5 figurine'>Buy a figurine of your favorite charactere</Link>
-      <Link to='/cart' className='fas fa-shopping-cart cart'>&nbsp;Your Cart</Link>
-    </header>
-  )
+import withWidth, { isWidthUp, isWidthDown }
+  from '@material-ui/core/withWidth';
+
+const Header = (props) => {
+
+  if (isWidthDown('xs', props.width)) {
+    return <HeaderMobile />
+  } else if (isWidthDown('sm', props.width)) {
+    return <HeaderTablet />
+  } else if ((isWidthDown('md', props.width))) {
+    return <HeaderLaptop />
+  } else if ((isWidthUp('md', props.width))) {
+    return <HeaderDesktop />
+  } else {
+    return null
+  }
 }
 
-export default Header;
+export default withWidth()(Header);

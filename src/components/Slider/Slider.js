@@ -1,50 +1,54 @@
 import React from 'react';
+import { useState } from 'react';
 import Poster from './Poster.png';
 import DarthVeider from './DarthVeider.png';
-import SwiperCore, { Navigation } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link } from 'react-router-dom';
+import SliderDesktop from './SliderDesktop';
+import SliderLaptop from './SliderLaptop';
+import SliderTablet from './SliderTablet';
+import SliderMobile from './SliderMobile';
+import withWidth, { isWidthUp, isWidthDown }
+  from '@material-ui/core/withWidth';
 
-import 'swiper/swiper.scss';
-import 'swiper/components/navigation/navigation.scss';
-import 'swiper/components/pagination/pagination.scss';
-import 'swiper/components/scrollbar/scrollbar.scss';
+const Slider = (props) => {
 
-import './Slider.scss'
+  const [img, setImg] = useState(Poster);
+  const [link, setLink] = useState('/movies/');
+  const [product, setProduct] = useState('Buy a DVD')
 
-SwiperCore.use([Navigation]);
+  const toggleImg = () => {
+    img === Poster ? setImg(DarthVeider) : setImg(Poster);
+    img === Poster ? setLink('/figurine') : setLink('/movies/');
+    img === Poster ? setProduct('buy a collectible figurine') : setProduct('buy a DVD');
+  }
 
-const Slider = () => {
-  return (
-    <div className='slider'>
-      <Swiper
-        spaceBetween={300}
-        slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
-      >
-        <SwiperSlide className='slideItems'>
-          <img src={Poster} alt='movies' className='poster' />
-          <div className='mt-3'>
-            <Link to='/movies/'>
-              <button type="button" className="btn btn-primary">Buy a DVD</button>
-            </Link>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className='slideItems'>
-          <img src={DarthVeider} alt='figurines' />
-          <div className='mt-3'>
-            <Link to='/figurine'>
-              <button type="button" className="btn btn-primary">Buy a collectible figurine</button>
-            </Link>
-          </div>
-        </SwiperSlide>
-
-      </Swiper>
-    </div >
-  );
+  if (isWidthDown('xs', props.width)) {
+    return <SliderMobile
+      toggleImg={toggleImg}
+      link={link}
+      product={product}
+      img={img} />
+  } else if (isWidthDown('sm', props.width)) {
+    return <SliderTablet
+      toggleImg={toggleImg}
+      link={link}
+      product={product}
+      img={img} />
+  } else if ((isWidthDown('md', props.width))) {
+    return <SliderLaptop
+      toggleImg={toggleImg}
+      link={link}
+      product={product}
+      img={img} />
+  } else if ((isWidthUp('md', props.width))) {
+    return <SliderDesktop
+      toggleImg={toggleImg}
+      link={link}
+      product={product}
+      img={img} />
+  } else {
+    return null
+  }
 };
 
-export default Slider;
+export default withWidth()(Slider);
 
