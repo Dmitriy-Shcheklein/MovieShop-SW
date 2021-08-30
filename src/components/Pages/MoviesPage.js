@@ -1,5 +1,4 @@
 import React from 'react';
-import CartTable from '../CartTable';
 import MovieListContainer from '../MovieList';
 import ErrorBoundry from '../ErrorBoundry';
 
@@ -8,7 +7,6 @@ const MoviesPage = () => {
     <ErrorBoundry>
       <section>
         <MovieListContainer />
-        <CartTable />
       </section>
     </ErrorBoundry>
   )

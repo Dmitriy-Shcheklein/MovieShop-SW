@@ -3,6 +3,8 @@ import Slider from '../Slider';
 import CartTable from '../CartTable';
 import MainPageTitle from '../MainPageTitle';
 
+
+
 const MainPage = () => {
 
   return (

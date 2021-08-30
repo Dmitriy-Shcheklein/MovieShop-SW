@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TableRow from './TableRow';
 
+import './CartTable.scss';
 
-const CartTable = ({ items, total }) => {
+const CartTableDesktop = ({ items, total }) => {
 
   let wrapperStyle = '';
 
@@ -61,5 +62,5 @@ const mapToStateProps = ({ cartList, allOrder }) => {
   }
 };
 
-export default connect(mapToStateProps)(CartTable);
+export default connect(mapToStateProps)(CartTableDesktop);
 

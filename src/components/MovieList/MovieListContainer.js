@@ -5,8 +5,15 @@ import Spinner from '../Spinner';
 import { moviesFetching } from '../../actions/Actions';
 import ErrorIndicator from '../ErrorIndicator';
 import MovieList from './MovieList';
+import { withStyles } from '@material-ui/styles';
 
-import './MovieListContainer.scss';
+const styles = () => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '25vh'
+  }
+})
 
 class MovieListContainer extends Component {
 
@@ -18,9 +25,11 @@ class MovieListContainer extends Component {
 
     const { loading, error } = this.props;
 
+    const { classes } = this.props;
+
     if (loading) {
       return (
-        <div className='alt'>
+        <div className={classes.root}>
           <Spinner />
         </div>
       )
@@ -29,7 +38,6 @@ class MovieListContainer extends Component {
     if (error) {
       return <ErrorIndicator />
     }
-
     return <MovieList />
   }
 }
@@ -47,6 +55,6 @@ const mapDispatchToProps = (dispatch, { movieShopService }) => {
   }
 }
 
-export default withMovieShopService()(connect(
+export default withStyles(styles)(withMovieShopService()(connect(
   mapStateToProps, mapDispatchToProps)(MovieListContainer)
-);
+));

@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     zIndex: '999',
     backgroundColor: '#000000',
     top: '0',
+    zIndex: '5'
   },
   link: {
     color: '#ffff00',

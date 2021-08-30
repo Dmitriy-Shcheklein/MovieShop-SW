@@ -6,8 +6,15 @@ import FigurineList from './FigurineList';
 import { figurineFetching } from '../../actions/Actions';
 import { useEffect, useContext } from 'react';
 import { MyContext } from '../MovieShopContext';
+import { makeStyles } from '@material-ui/styles';
 
-import './FigurineListContainer.scss';
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '25vh'
+  }
+})
 
 const FigurineListContainer = () => {
 
@@ -21,9 +28,11 @@ const FigurineListContainer = () => {
   const loading = useSelector(state => state.loading);
   const error = useSelector(state => state.error);
 
+  const classes = useStyles();
+
   if (loading) {
     return (
-      <div className='alt'>
+      <div className={classes.root} >
         <Spinner />
       </div>
     )

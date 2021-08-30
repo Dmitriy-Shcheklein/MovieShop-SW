@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import ModalSpinner from '../Modal/ModalSpinner';
 
 
-import "./FormOfGratitude.scss"
+
 
 const FormOfGratitude = ({ numberOfOrder, toggleModal }) => {
 

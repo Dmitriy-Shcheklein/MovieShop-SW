@@ -1,37 +1,40 @@
 import React from 'react';
+import withWidth, { isWidthDown, isWidthUp }
+  from '@material-ui/core/withWidth';
+import FigurineListItemDesktop from './FigurineListItemDesktop';
+import FigurineListItemLaptop from './FigurineListItemLaptop';
+import FigurineListItemTablet from './FigurineListItemTablet';
+import FigurineListItemMobile from './FigurineListItemMobile';
 
-import './FigurineListItem.scss';
+const FigurineListItem = (props) => {
 
-const FigurineListItem = ({ figurine, onAddedtoCart }) => {
+  const { figurine, onAddedtoCart } = props;
 
-  const { id, title, height, mass, hairColor,
-    skinColor, EyeColor, gender, price } = figurine;
 
-  return (
-    <div className='figurineListItem'>
-      <div className="figurineListItem_poster">
-        <img src={`https://starwars-visualguide.com/assets/img/characters/${id - 100}.jpg`}
-          alt='poster' />
-      </div>
-      <div className='figurineDetails'>
-        <h2 className='figurineName'>{title}</h2>
-        <div className='figurineSpecifications'>
-          <p>Height: {height} </p>
-          <p>Weight: {mass} </p>
-          <p>Hair Color: {hairColor} </p>
-          <p>Skin Color: {skinColor} </p>
-          <p>Eye Color: {EyeColor} </p>
-          <p>Gender: {gender} </p>
-        </div>
-        <p>Price: ${price}</p>
-        <button
-          onClick={onAddedtoCart}
-          className='btn btn-primary button'>
-          Add to cart
-        </button>
-      </div>
-    </div>
-  )
+  if (isWidthDown('xs', props.width)) {
+    return <FigurineListItemMobile
+      figurine={figurine}
+      onAddedtoCart={onAddedtoCart}
+    />
+  } else if (isWidthDown('sm', props.width)) {
+    return <FigurineListItemTablet
+      figurine={figurine}
+      onAddedtoCart={onAddedtoCart}
+    />
+  } else if ((isWidthDown('md', props.width))) {
+    return <FigurineListItemLaptop
+      figurine={figurine}
+      onAddedtoCart={onAddedtoCart}
+    />
+  } else if ((isWidthUp('md', props.width))) {
+    return <FigurineListItemDesktop
+      figurine={figurine}
+      onAddedtoCart={onAddedtoCart}
+    />
+  } else {
+    return null
+  }
+
 }
 
-export default FigurineListItem;
+export default withWidth()(FigurineListItem);

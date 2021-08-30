@@ -1,40 +1,38 @@
 import React from 'react';
-import './MovieListItem.scss';
+import withWidth, { isWidthDown, isWidthUp } from '@material-ui/core/withWidth';
+import MovieListItemDesktop from './MovieListItemDesktop';
+import MovieListItemLaptop from './MovieListItemLaptop';
+import MovieListItemTablet from './MovieListItemTablet';
+import MovieListItemMobile from './MovieListItemMobile';
 
-const MovieListItem = ({ movie, onAddedtoCart }) => {
 
-  const { title, releaseDate, director,
-    episodeNumber, price, id } = movie;
+const MovieListItem = (props) => {
 
-  return (
+  const { movie, onAddedtoCart } = props;
 
-    <div className='moveListItem'>
-      <div className="movieListItem_poster">
-        <img src={`https://starwars-visualguide.com/assets/img/films/${id}.jpg`}
-          alt='poster' />
-      </div>
-      <div className='movieDetails'>
-        <h2 className='movieTitle'>{title}</h2>
-        <div className='releaseDate'>
-          <p>Date of release: {releaseDate} </p>
-        </div>
-        <div className='director'>
-          <p>Director: {director}</p>
-        </div>
-        <div className='episodeNumber'>
-          <p>Episode Number: {episodeNumber}</p>
-        </div>
-        <div className='price'>
-          <p>Price: ${price}</p>
-        </div>
-        <button
-          onClick={onAddedtoCart}
-          className='btn btn-primary button'>
-          Add to cart
-        </button>
-      </div>
-    </div>
-  )
+  if (isWidthDown('xs', props.width)) {
+    return <MovieListItemMobile
+      movie={movie}
+      onAddedtoCart={onAddedtoCart}
+    />
+  } else if (isWidthDown('sm', props.width)) {
+    return <MovieListItemTablet
+      movie={movie}
+      onAddedtoCart={onAddedtoCart}
+    />
+  } else if ((isWidthDown('md', props.width))) {
+    return <MovieListItemLaptop
+      movie={movie}
+      onAddedtoCart={onAddedtoCart}
+    />
+  } else if ((isWidthUp('md', props.width))) {
+    return <MovieListItemDesktop
+      movie={movie}
+      onAddedtoCart={onAddedtoCart}
+    />
+  } else {
+    return null
+  }
 }
 
-export default MovieListItem;
+export default withWidth()(MovieListItem);

@@ -51,7 +51,8 @@ const useStyles = makeStyles({
     textTransform: 'uppercase',
     '&:hover': {
       backgroundColor: '#FEDE00'
-    }
+    },
+    marginRight: '15px',
   },
   title: {
     color: '#ffff00',

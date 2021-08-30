@@ -24,7 +24,7 @@ const CartPage = () => {
     )
   };
 
-  return <CartPageFull
+  return <CartPageWithOrder
     modal={modal}
     toggleModal={toggleModal}
   />
@@ -32,7 +32,7 @@ const CartPage = () => {
 
 export default CartPage;
 
-const CartPageFull = (props) => {
+const CartPageWithOrder = (props) => {
 
   const { modal, toggleModal } = props;
 
