@@ -1,8 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import ErrorIndicatorOrder from '../ErrorIndicator/ErrorIndicatorOrder';
 import ModalSpinner from '../Modal/ModalSpinner';
+import Gratitude from './Gratituge';
+import { makeStyles } from '@material-ui/styles';
 
-
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  }
+})
 
 
 const FormOfGratitude = ({ numberOfOrder, toggleModal }) => {
@@ -11,9 +20,11 @@ const FormOfGratitude = ({ numberOfOrder, toggleModal }) => {
   const error = useSelector((state) => state.sendingFormError);
   const orderInfo = useSelector((state) => state.orderInfo);
 
+  const classes = useStyles();
+
   if (loading) {
     return (
-      <div className='modalSpinner'>
+      <div className={classes.root}>
         <ModalSpinner />
         <p>Your order is being sent</p>
       </div>
@@ -21,31 +32,17 @@ const FormOfGratitude = ({ numberOfOrder, toggleModal }) => {
   }
 
   if (error) {
-    return (
-      <div className='gratitude'>
-        <h3>OOPS!!!</h3>
-        <p>Your order has not been placed. <br />
-          Please, try again later.</p>
-        <button
-          onClick={toggleModal}
-          className='btn btn-dark'>Close</button>
-      </div>
-    )
+    return <ErrorIndicatorOrder
+      toggleModal={toggleModal}
+    />
   }
 
   console.log('INFO OF ORDER, response from the server', orderInfo);
 
-  return (
-    <div className='gratitude'>
-      <h3>Thank you for your order.</h3>
-      <p> Your order number is #{numberOfOrder}.<br />
-        We have emailed your order confirmation,<br />
-        and will send you an update when your order has shipped.</p>
-      <button
-        onClick={toggleModal}
-        className='btn btn-dark'>Close</button>
-    </div>
-  )
+  return <Gratitude
+    numberOfOrder={numberOfOrder}
+    toggleModal={toggleModal}
+  />
 }
 
 export default FormOfGratitude;

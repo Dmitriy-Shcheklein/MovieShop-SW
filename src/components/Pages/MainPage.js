@@ -1,6 +1,5 @@
 import React from 'react';
 import Slider from '../Slider';
-import CartTable from '../CartTable';
 import MainPageTitle from '../MainPageTitle';
 
 
@@ -11,9 +10,7 @@ const MainPage = () => {
     <main>
       <MainPageTitle />
       <Slider />
-      <CartTable />
     </main>
-
   )
 }
 

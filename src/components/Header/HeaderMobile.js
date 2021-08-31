@@ -11,6 +11,7 @@ const useStyles = makeStyles({
     minHeight: '20px',
     borderBottom: '1px solid yellow',
     position: 'sticky',
+    willChange: 'transform',
     backgroundColor: '#000000',
     top: '0',
     zIndex: '5'
